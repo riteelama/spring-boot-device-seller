@@ -1,0 +1,8 @@
+{
+  "name": "ritee-device-seller",
+  "buildpacks": [
+    {
+      "url": "heroku/java"
+    }
+  ]
+}

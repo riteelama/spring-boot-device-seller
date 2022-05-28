@@ -1,0 +1,33 @@
+package com.ritee.springbootdeviceseller.service;
+
+import com.ritee.springbootdeviceseller.model.Purchase;
+import com.ritee.springbootdeviceseller.repository.PurchaseRepository;
+import com.ritee.springbootdeviceseller.repository.projection.PurchaseItem;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Service
+public class PurchaseServiceImpl implements PurchaseService
+{
+    private final PurchaseRepository purchaseRepository;
+
+    public PurchaseServiceImpl(PurchaseRepository purchaseRepository) {
+        this.purchaseRepository = purchaseRepository;
+    }
+
+    @Override
+    public Purchase savePurchase(Purchase purchase)
+    {
+        purchase.setPurchaseTime(LocalDateTime.now());
+
+        return purchaseRepository.save(purchase);
+    }
+
+    @Override
+    public List<PurchaseItem> findPurchaseItemOfUser(Long userId)
+    {
+        return purchaseRepository.findAllPurchaseOfUser(userId);
+    }
+}
